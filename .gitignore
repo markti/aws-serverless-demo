@@ -1,0 +1,11 @@
+**/.env
+**/bin
+**/Debug
+**/Release
+**/obj
+**/.DS_Store
+**/kube_config.yaml
+**/.suo
+**/.vs/*
+**/__azurite_*
+.vscode/settings.json
