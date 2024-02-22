@@ -52,7 +52,6 @@ resource "aws_lb" "main" {
 
 resource "aws_lb_target_group" "main" {
   name     = "alb-${var.application_name}-${var.environment_name}"
-  port     = 80
   protocol = "HTTP"
   vpc_id   = aws_vpc.main.id
 
