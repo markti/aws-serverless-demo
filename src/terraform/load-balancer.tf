@@ -75,6 +75,7 @@ resource "aws_lambda_permission" "alb" {
 resource "aws_lb_target_group_attachment" "lambda" {
   target_group_arn = aws_lb_target_group.main.arn
   target_id        = aws_lambda_function.main.arn
+  depends_on       = [aws_lambda_permission.alb]
 }
 
 resource "aws_lb_listener" "lambda" {
