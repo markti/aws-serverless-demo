@@ -9,3 +9,9 @@
 **/.vs/*
 **/__azurite_*
 .vscode/settings.json
+
+**/.debug.sh
+**/.debug.tfvars
+**/.terraform.*
+**/.terraform/**
+**/__azurite*.json
