@@ -21,6 +21,7 @@ resource "aws_lambda_function" "main" {
   role          = aws_iam_role.lambda.arn
   runtime       = "dotnet6"
   filename      = "deployment.zip"
+  handler       = "myDotnetFunction::myDotnetFunction.Function::FunctionHandler"
 
   tags = {
     Name        = "${var.application_name}-${var.environment_name}-lambda"
