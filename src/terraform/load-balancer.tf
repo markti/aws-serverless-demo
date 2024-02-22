@@ -49,3 +49,40 @@ resource "aws_lb" "main" {
     environment = var.environment_name
   }
 }
+
+resource "aws_lb_target_group" "main" {
+  name     = "alb-${var.application_name}-${var.environment_name}"
+  port     = 80
+  protocol = "HTTP"
+  vpc_id   = aws_vpc.main.id
+
+  target_type = "lambda"
+
+  health_check {
+    enabled = false
+  }
+}
+
+resource "aws_lambda_permission" "alb" {
+  statement_id  = "AllowALBInvoke"
+  action        = "lambda:InvokeFunction"
+  function_name = aws_lambda_function.main.arn
+  principal     = "elasticloadbalancing.amazonaws.com"
+  source_arn    = aws_lb.main.arn
+}
+
+resource "aws_lb_target_group_attachment" "lambda" {
+  target_group_arn = aws_lb_target_group.main.arn
+  target_id        = aws_lambda_function.main.arn
+}
+
+resource "aws_lb_listener" "lambda" {
+  load_balancer_arn = aws_lb.main.arn
+  port              = 80
+  protocol          = "HTTP"
+
+  default_action {
+    type             = "forward"
+    target_group_arn = aws_lb_target_group.main.arn
+  }
+}
