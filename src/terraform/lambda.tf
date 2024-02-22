@@ -20,4 +20,5 @@ resource "aws_lambda_function" "main" {
   function_name = "${var.application_name}-${var.environment_name}"
   role          = aws_iam_role.lambda.arn
   runtime       = "dotnet6"
+  filename      = "deployment.zip"
 }
