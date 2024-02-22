@@ -57,7 +57,9 @@ jobs:
       with:
         name: dotnet-deployment
         path: ${{ env.DOTNET_WORKING_DIRECTORY }}/deployment.zip
+
   terraform-apply:
+    needs: [build]
     runs-on: ubuntu-latest
 
     environment:
