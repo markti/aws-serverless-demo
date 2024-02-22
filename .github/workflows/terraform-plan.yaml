@@ -76,6 +76,13 @@ jobs:
       run: |
         pwd
         ls
+        cp ./deployment.zip ${{ vars.TERRAFORM_WORKING_DIRECTORY }}
+
+    - name: Check Files
+      working-directory: ${{ vars.TERRAFORM_WORKING_DIRECTORY }}
+      run: |
+        pwd
+        ls
 
     - id: setup
       name: Setup `terraform`
