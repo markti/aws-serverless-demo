@@ -59,6 +59,7 @@ jobs:
         path: ${{ env.DOTNET_WORKING_DIRECTORY }}/deployment.zip
 
   terraform-plan:
+    needs: [build]
     runs-on: ubuntu-latest
 
     environment:
