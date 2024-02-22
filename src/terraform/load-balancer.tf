@@ -58,7 +58,9 @@ resource "aws_lb_target_group" "main" {
   target_type = "lambda"
 
   health_check {
-    enabled = false
+    enabled  = false
+    interval = 60
+    timeout  = 30
   }
 }
 
