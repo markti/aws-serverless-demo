@@ -69,7 +69,7 @@ resource "aws_lambda_permission" "alb" {
   action        = "lambda:InvokeFunction"
   function_name = aws_lambda_function.main.arn
   principal     = "elasticloadbalancing.amazonaws.com"
-  source_arn    = aws_lb.main.arn
+  source_arn    = aws_lb_target_group.main.arn
 }
 
 resource "aws_lb_target_group_attachment" "lambda" {
