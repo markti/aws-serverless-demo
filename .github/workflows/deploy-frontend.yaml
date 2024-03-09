@@ -62,7 +62,7 @@ jobs:
     needs: [build]
     runs-on: ubuntu-latest
     outputs:
-      bucket_domain_name: ${{ steps.apply.outputs.bucket_domain_name }}
+      bucket_domain_name: ${{ steps.apply.outputs.frontend_bucket_name }}
 
     environment:
       name: ${{ github.event.inputs.environment }}
@@ -83,6 +83,7 @@ jobs:
       env:
         AWS_ACCESS_KEY_ID: ${{ vars.AWS_ACCESS_KEY_ID }}
         AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+        AWS_REGION: ${{ vars.BACKEND_REGION }}
         BACKEND_BUCKET_NAME: ${{ vars.BACKEND_BUCKET_NAME }}
         BACKEND_REGION: ${{ vars.BACKEND_REGION }}
         BACKEND_KEY: ${{ vars.APPLICATION_NAME }}-${{ vars.ENVIRONMENT_NAME }}
@@ -95,9 +96,9 @@ jobs:
           
         terraform apply -auto-approve
 
-        bucket_domain_name=$(terraform output -raw bucket_domain_name)
-        echo $bucket_domain_name
-        echo "bucket_domain_name=$bucket_domain_name" >> "$GITHUB_OUTPUT"
+        frontend_bucket_name=$(terraform output -raw frontend_bucket_name)
+        echo $frontend_bucket_name
+        echo "frontend_bucket_name=$frontend_bucket_name" >> "$GITHUB_OUTPUT"
  
   deploy:
     needs: [terraform, build]
@@ -126,6 +127,7 @@ jobs:
         env:
           AWS_ACCESS_KEY_ID: ${{ vars.AWS_ACCESS_KEY_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          AWS_REGION: ${{ vars.BACKEND_REGION }}
         working-directory: ${{ env.DOTNET_WORKING_DIRECTORY }}/upload-staging
         run: |
-          aws s3 sync . s3://${{ steps.terraform.outputs.bucket_domain_name }}
+          aws s3 sync . s3://${{ steps.terraform.outputs.frontend_bucket_name }}

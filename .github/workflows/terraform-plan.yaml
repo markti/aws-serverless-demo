@@ -96,6 +96,7 @@ jobs:
       env:
         AWS_ACCESS_KEY_ID: ${{ vars.AWS_ACCESS_KEY_ID }}
         AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+        AWS_REGION: ${{ vars.BACKEND_REGION }}
         BACKEND_BUCKET_NAME: ${{ vars.BACKEND_BUCKET_NAME }}
         BACKEND_REGION: ${{ vars.BACKEND_REGION }}
         BACKEND_KEY: ${{ vars.APPLICATION_NAME }}-${{ vars.ENVIRONMENT_NAME }}
