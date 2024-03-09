@@ -128,4 +128,4 @@ jobs:
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
         working-directory: ${{ env.DOTNET_WORKING_DIRECTORY }}/upload-staging
         run: |
-          aws s3 sync . s3://${bucket_domain_name}
+          aws s3 sync . s3://${{ steps.terraform.outputs.bucket_domain_name }}
