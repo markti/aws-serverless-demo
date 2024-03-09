@@ -77,7 +77,7 @@ jobs:
         terraform_version: ${{ env.TERRAFORM_VERSION }}
         terraform_wrapper: false
 
-    - id: terraform
+    - id: apply
       name: Terraform Output
       env:
         AWS_ACCESS_KEY_ID: ${{ vars.AWS_ACCESS_KEY_ID }}
