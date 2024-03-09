@@ -88,3 +88,20 @@ resource "aws_lb_listener" "lambda" {
     target_group_arn = aws_lb_target_group.main.arn
   }
 }
+
+resource "aws_lb_listener_rule" "backend" {
+  listener_arn = aws_lb_listener.lambda.arn
+  priority     = 100
+
+  action {
+    type             = "forward"
+    target_group_arn = aws_lb_target_group.main.arn
+  }
+
+  condition {
+    path_pattern {
+      values = ["/api/*"]
+    }
+  }
+
+}
