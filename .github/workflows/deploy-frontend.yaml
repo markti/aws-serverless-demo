@@ -61,7 +61,7 @@ jobs:
   terraform:
     runs-on: ubuntu-latest
     outputs:
-      bucket_domain_name: ${{ steps.apply.outputs.frontend_bucket_name }}
+      frontend_bucket_name: ${{ steps.apply.outputs.frontend_bucket_name }}
 
     environment:
       name: ${{ github.event.inputs.environment }}
