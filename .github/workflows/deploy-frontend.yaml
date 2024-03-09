@@ -59,7 +59,6 @@ jobs:
         path: ${{ env.DOTNET_WORKING_DIRECTORY }}/deployment.zip
 
   terraform:
-    needs: [build]
     runs-on: ubuntu-latest
     outputs:
       bucket_domain_name: ${{ steps.apply.outputs.frontend_bucket_name }}
