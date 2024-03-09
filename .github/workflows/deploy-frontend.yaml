@@ -130,4 +130,4 @@ jobs:
           AWS_REGION: ${{ vars.BACKEND_REGION }}
         working-directory: ${{ env.DOTNET_WORKING_DIRECTORY }}/upload-staging
         run: |
-          aws s3 sync . s3://${{ steps.terraform.outputs.frontend_bucket_name }}
+          aws s3 sync . s3://${{ needs.terraform.outputs.frontend_bucket_name }}
