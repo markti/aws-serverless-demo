@@ -45,8 +45,8 @@ jobs:
 
     - name: Generate the Deployment Package
       run: |
-        zip -r ../deployment.zip ./
-      working-directory: ${{ env.DOTNET_WORKING_DIRECTORY }}/publish
+        zip -r ../../deployment.zip ./
+      working-directory: ${{ env.DOTNET_WORKING_DIRECTORY }}/publish/wwwroot
       
     - name: Display structure of downloaded files
       run: ls -R
