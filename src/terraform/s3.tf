@@ -33,6 +33,8 @@ resource "aws_s3_bucket_website_configuration" "frontend" {
 resource "aws_s3_bucket_policy" "frontend" {
   bucket = aws_s3_bucket.frontend.id
   policy = data.aws_iam_policy_document.frontend.json
+
+  depends_on = [aws_s3_bucket_public_access_block.frontend]
 }
 
 data "aws_iam_policy_document" "frontend" {
