@@ -15,7 +15,7 @@ resource "aws_iam_policy" "terraform_s3_policy" {
   })
 }
 
-resource "aws_iam_role_policy_attachment" "terraform_s3_policy" {
-  role       = data.aws_caller_identity.current.arn
+resource "aws_iam_user_policy_attachment" "test-attach" {
+  user       = data.aws_caller_identity.current.arn
   policy_arn = aws_iam_policy.terraform_s3_policy.arn
 }
