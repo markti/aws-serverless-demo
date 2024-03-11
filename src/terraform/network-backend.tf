@@ -7,6 +7,8 @@ resource "aws_subnet" "backend" {
   availability_zone = each.value.availability_zone
   cidr_block        = each.value.cidr_block
 
+  depends_on = [random_shuffle.az]
+
 }
 
 # must allow IGW access to the internet
