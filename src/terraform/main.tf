@@ -22,3 +22,5 @@ resource "aws_resourcegroups_group" "main" {
     )
   }
 }
+
+data "aws_caller_identity" "current" {}
