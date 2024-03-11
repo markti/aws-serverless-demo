@@ -25,7 +25,7 @@ resource "aws_s3_bucket_policy" "frontend" {
   bucket = aws_s3_bucket.frontend.id
   policy = data.aws_iam_policy_document.frontend.json
 
-  depends_on = [aws_iam_policy.terraform_s3_policy]
+  depends_on = [aws_iam_role_policy_attachment.terraform_s3_policy]
 }
 
 data "aws_iam_policy_document" "frontend" {
