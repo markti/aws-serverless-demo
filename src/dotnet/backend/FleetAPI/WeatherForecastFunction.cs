@@ -1,4 +1,5 @@
 using Amazon.Lambda.Core;
+using System.Text.Json;
 
 // Assembly attribute to enable the Lambda function's JSON input to be converted into a .NET class.
 [assembly: LambdaSerializer(typeof(Amazon.Lambda.Serialization.SystemTextJson.DefaultLambdaJsonSerializer))]
@@ -18,9 +19,9 @@ public class Function
     /// <param name="input"></param>
     /// <param name="context"></param>
     /// <returns></returns>
-    public IEnumerable<WeatherForecast> FunctionHandler(ILambdaContext context)
+    public LambdaResponse FunctionHandler(ILambdaContext context)
     {
-        var forecasts Enumerable.Range(1,5).Select(index => new WeatherForecast {
+        var forecasts = Enumerable.Range(1,5).Select(index => new WeatherForecast {
             Date = DateTime.Now.AddDays(index),
             TemperatureC = Random.Shared.Next(-20,55),
             Summary = Summaries[Random.Shared.Next(Summaries.Length)]
