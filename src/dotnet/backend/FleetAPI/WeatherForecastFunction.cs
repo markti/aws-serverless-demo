@@ -12,7 +12,7 @@ public class Function
     {
         "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
     };
-    
+
     /// <summary>
     /// A simple function that takes a string and does a ToUpper
     /// </summary>
@@ -21,14 +21,16 @@ public class Function
     /// <returns></returns>
     public LambdaResponse FunctionHandler(LambdaRequest request, ILambdaContext context)
     {
-        var forecasts = Enumerable.Range(1,5).Select(index => new WeatherForecast {
+        var forecasts = Enumerable.Range(1, 5).Select(index => new WeatherForecast
+        {
             Date = DateTime.Now.AddDays(index),
-            TemperatureC = Random.Shared.Next(-20,55),
+            TemperatureC = Random.Shared.Next(-20, 55),
             Summary = Summaries[Random.Shared.Next(Summaries.Length)]
         })
         .ToArray();
 
-        return new LambdaResponse {
+        return new LambdaResponse
+        {
             StatusCode = 200,
             Headers = new Dictionary<string, string>() {
                 { "Content-Type", "application/json" },

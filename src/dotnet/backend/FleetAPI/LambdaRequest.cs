@@ -1,13 +1,22 @@
 
+using System.Text.Json.Serialization;
+
 namespace FleetAPI;
 
 public class LambdaRequest
 {
-    public string requestContext { get; set; }
-    public string httpMethod { get; set; }
-    public string path { get; set; }
-    public string queryStringParameters { get; set; }
-    public IDictionary<string, string> headers { get; set; }
-    public bool isBase64Encoded { get; set; }
-    public string body { get; set; }
+    [JsonPropertyName("requestContext")]
+    public string RequestContext { get; set; }
+    [JsonPropertyName("httpMethod")]
+    public string HttpMethod { get; set; }
+    [JsonPropertyName("path")]
+    public string Path { get; set; }
+    [JsonPropertyName("queryStringParameters")]
+    public string QueryStringParameters { get; set; }
+    [JsonPropertyName("headers")]
+    public IDictionary<string, string> Headers { get; set; }
+    [JsonPropertyName("isBase64Encoded")]
+    public bool IsBase64Encoded { get; set; }
+    [JsonPropertyName("body")]
+    public string Body { get; set; }
 }
