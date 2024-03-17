@@ -132,4 +132,4 @@ jobs:
           AWS_REGION: ${{ vars.BACKEND_REGION }}
           FUNCTION_NAME: ${{needs.terraform.outputs.lambda_function_name}}
         run: |
-          aws lambda update-function-code --function-name $FUNCTION_NAME --zip-file ./deployment.zip
+          aws lambda update-function-code --function-name $FUNCTION_NAME --zip-file fileb://deployment.zip
