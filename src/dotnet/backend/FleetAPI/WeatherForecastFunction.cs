@@ -14,9 +14,9 @@ public class WeatherForecast {
 public class Function
 {
 
-    private static readonly string[] Summaries = new [] {
+    private static readonly string[] Summaries = new[] {
         "Freezing", "Bracing", "Chilly"
-    }
+    };
     
     /// <summary>
     /// A simple function that takes a string and does a ToUpper
@@ -27,7 +27,7 @@ public class Function
     public IEnumerable<WeatherForecast> FunctionHandler(ILambdaContext context)
     {
         return Enumerable.Range(1,5).Select(index => new WeatherForecast {
-            Date = DateTime.Now.Adddays(index),
+            Date = DateTime.Now.AddDays(index),
             TemperatureC = Random.Shared.Next(-20,55),
             Summary = Summaries[Random.Shared.Next(Summaries.Length)]
         })
