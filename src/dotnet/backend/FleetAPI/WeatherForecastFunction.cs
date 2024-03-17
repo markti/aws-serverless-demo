@@ -13,9 +13,9 @@ public class WeatherForecast {
 
 public class Function
 {
-
-    private static readonly string[] Summaries = new[] {
-        "Freezing", "Bracing", "Chilly"
+    private static readonly string[] Summaries = new[]
+    {
+        "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
     };
     
     /// <summary>
