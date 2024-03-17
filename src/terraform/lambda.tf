@@ -25,7 +25,7 @@ resource "aws_lambda_function" "main" {
 
   environment {
     variables = {
-      SECRET_SAUCE = "ketchup"
+      SECRET_SAUCE = random_string.secret_sauce.result
     }
   }
 
