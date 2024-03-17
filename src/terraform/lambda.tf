@@ -23,6 +23,12 @@ resource "aws_lambda_function" "main" {
   filename      = "deployment.zip"
   handler       = "FleetAPI::FleetAPI.Function::FunctionHandler"
 
+  environment {
+    variables = {
+      SECRET_SAUCE = "ketchup"
+    }
+  }
+
   tags = {
     Name        = "${var.application_name}-${var.environment_name}-lambda"
     application = var.application_name
