@@ -19,7 +19,7 @@ public class Function
     /// <param name="input"></param>
     /// <param name="context"></param>
     /// <returns></returns>
-    public LambdaResponse FunctionHandler(ILambdaContext context)
+    public LambdaResponse FunctionHandler(LambdaRequest request, ILambdaContext context)
     {
         var forecasts = Enumerable.Range(1,5).Select(index => new WeatherForecast {
             Date = DateTime.Now.AddDays(index),
