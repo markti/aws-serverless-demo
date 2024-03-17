@@ -74,6 +74,7 @@ jobs:
     - uses: actions/download-artifact@v3
       with:
         name: dotnet-deployment
+        path: ${{ vars.TERRAFORM_WORKING_DIRECTORY }}
     
     - name: Display structure of downloaded files
       run: ls -R
