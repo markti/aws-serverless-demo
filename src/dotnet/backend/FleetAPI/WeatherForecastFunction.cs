@@ -1,5 +1,6 @@
 using Amazon.Lambda.Core;
 using System.Text.Json;
+using Amazon.Lambda.ApplicationLoadBalancerEvents;
 
 // Assembly attribute to enable the Lambda function's JSON input to be converted into a .NET class.
 [assembly: LambdaSerializer(typeof(Amazon.Lambda.Serialization.SystemTextJson.DefaultLambdaJsonSerializer))]
@@ -19,7 +20,7 @@ public class Function
     /// <param name="input"></param>
     /// <param name="context"></param>
     /// <returns></returns>
-    public LambdaResponse FunctionHandler(LambdaRequest request, ILambdaContext context)
+    public ApplicationLoadBalancerResponse FunctionHandler(ApplicationLoadBalancerRequest request, ILambdaContext context)
     {
         var forecasts = Enumerable.Range(1, 5).Select(index => new WeatherForecast
         {
@@ -29,7 +30,7 @@ public class Function
         })
         .ToArray();
 
-        return new LambdaResponse
+        return new ApplicationLoadBalancerResponse
         {
             StatusCode = 200,
             Headers = new Dictionary<string, string>() {
