@@ -5,12 +5,6 @@ using Amazon.Lambda.Core;
 
 namespace FleetAPI;
 
-public class WeatherForecast {
-    public DateTime Date {get;set;}
-    public int TemperatureC {get;set;}
-    public string Summary {get;set;}
-}
-
 public class Function
 {
     private static readonly string[] Summaries = new[]
@@ -26,11 +20,20 @@ public class Function
     /// <returns></returns>
     public IEnumerable<WeatherForecast> FunctionHandler(ILambdaContext context)
     {
-        return Enumerable.Range(1,5).Select(index => new WeatherForecast {
+        var forecasts Enumerable.Range(1,5).Select(index => new WeatherForecast {
             Date = DateTime.Now.AddDays(index),
             TemperatureC = Random.Shared.Next(-20,55),
             Summary = Summaries[Random.Shared.Next(Summaries.Length)]
         })
         .ToArray();
+
+        return new LambdaResponse {
+            StatusCode = 200,
+            Headers = new Dictionary<string, string>() {
+                { "Content-Type", "application/json" },
+                { "Access-Control-Allow-Origin", "*" }
+            },
+            Body = JsonSerializer.Serialize(forecasts)
+        };
     }
 }
