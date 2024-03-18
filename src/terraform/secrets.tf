@@ -9,7 +9,7 @@ resource "aws_secretsmanager_secret" "secret_sauce" {
 
 resource "aws_secretsmanager_secret_version" "secret_sauce" {
   secret_id     = aws_secretsmanager_secret.secret_sauce.id
-  secret_string = random_string.secret_sauce.result
+  secret_string = random_password.secret_sauce.result
 }
 
 resource "random_password" "secret_sauce" {

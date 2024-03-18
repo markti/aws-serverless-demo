@@ -50,7 +50,7 @@ resource "aws_lambda_function" "main" {
 
   environment {
     variables = {
-      SECRET_SAUCE = random_string.secret_sauce.result
+      SECRET_SAUCE = random_password.secret_sauce.result
     }
   }
 
