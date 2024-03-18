@@ -17,3 +17,26 @@ resource "random_password" "secret_sauce" {
   lower   = false
   special = false
 }
+
+resource "aws_iam_policy" "lambda_secrets" {
+  name        = "${var.application_name}-${var.environment_name}-secrets-policy"
+  description = "Policy to allow Lambda function to access secrets."
+
+  policy = jsonencode({
+    Version = "2012-10-17",
+    Statement = [
+      {
+        Action = ["secretsmanager:GetSecretValue"],
+        Effect = "Allow",
+        Resource = [
+          aws_secretsmanager_secret.secret_sauce.arn
+        ]
+      }
+    ]
+  })
+}
+
+resource "aws_iam_role_policy_attachment" "lambda_secrets" {
+  role       = aws_iam_role.lambda.name
+  policy_arn = aws_iam_policy.lambda_secrets_policy.arn
+}
