@@ -12,7 +12,7 @@ resource "aws_secretsmanager_secret_version" "secret_sauce" {
   secret_string = random_string.secret_sauce.result
 }
 
-resource "random_string" "secret_sauce" {
+resource "random_password" "secret_sauce" {
   length  = 8
   lower   = false
   special = false
